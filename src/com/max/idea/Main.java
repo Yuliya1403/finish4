@@ -4,20 +4,44 @@ import java.util.Locale;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        boolean result;
-        boolean result2;
-        boolean result3;
-        String result4;
-        String result5;
-        String str = "I like Java!!!";
-        result = str.contains("Java");
-        result2 = str.startsWith("I like");
-        result3 = str.endsWith("!!!");
-        if (result == true && result2 == true && result3 == true)
-            System.out.println(str.toUpperCase());
-        result4 = str.replace("a","o");
-        result5 = result4.substring(7, 11);
-        System.out.println(result5);
+        Scanner input = new Scanner(System.in);
+        System.out.println("Введите количество строк: ");
+
+        int n = input.nextInt();
+        input.nextLine();
+        String[] strings = new String[n];
+        Integer[] result = new Integer[n];
+
+        for (int i = 0; i < n; i++) {
+            System.out.println("Введите строку №" + (i + 1));
+            strings[i] = input.nextLine();
+            //input.nextLine();
+        }
+
+        for (int i = 0; i < n; i++) {
+            String str = "";
+
+            for (int j = 0; j < strings[i].length(); j++) {
+                char c = strings[i].charAt(j);
+
+                if (str.indexOf(c) == -1) {
+                    str += c;
+                }
+            }
+
+            result[i] = str.length();
+        }
+
+        int winner = result[0];
+        int index = 0;
+
+        for (int i = 1; i < n; i++) {
+            if (result[i] > winner) {
+                winner = result[i];
+                index = i;
+            }
+        }
+
+        System.out.println("Результат: " + strings[index]);
     }
 }
-
