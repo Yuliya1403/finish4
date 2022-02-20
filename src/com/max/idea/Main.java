@@ -1,47 +1,29 @@
 package com.max.idea;
 import java.sql.SQLOutput;
-import java.util.Locale;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+        int count = 3;
+
         Scanner input = new Scanner(System.in);
-        System.out.println("Введите количество строк: ");
 
-        int n = input.nextInt();
-        input.nextLine();
-        String[] strings = new String[n];
-        Integer[] result = new Integer[n];
+        System.out.println("Отгадай загадку: сидит дед, во сто шуб одет, кто его раздевает, тот слезы проливает");
 
-        for (int i = 0; i < n; i++) {
-            System.out.println("Введите строку №" + (i + 1));
-            strings[i] = input.nextLine();
-            //input.nextLine();
-        }
+        for (int i = 0; i < 3; i++) {
+            String answer = input.nextLine();
 
-        for (int i = 0; i < n; i++) {
-            String str = "";
-
-            for (int j = 0; j < strings[i].length(); j++) {
-                char c = strings[i].charAt(j);
-
-                if (str.indexOf(c) == -1) {
-                    str += c;
-                }
-            }
-
-            result[i] = str.length();
-        }
-
-        int winner = result[0];
-        int index = 0;
-
-        for (int i = 1; i < n; i++) {
-            if (result[i] > winner) {
-                winner = result[i];
-                index = i;
+            if (answer.equals("Заархивированный вирус")) {
+                System.out.println("Правильно");
+                break;
+            } else if (answer.equals("Подсказка") && i == 0) {
+                System.out.println("Подсказка на загадку");
+            } else if (answer.equals("Подсказка") && i != 0) {
+                System.out.println("Подсказка уже недоступна");
+            } else if (i < 2) {
+                System.out.println("Подумай еще!");
+            } else {
+                System.out.println("Обидно, приходи в другой раз");
             }
         }
-
-        System.out.println("Результат: " + strings[index]);
     }
 }
